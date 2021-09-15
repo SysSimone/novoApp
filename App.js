@@ -19,16 +19,16 @@ import profile1 from './src/assets/profile1.jpg';
 
 export default function App() {
   const [currentTab, setCurrentTab] = useState("Home");
- 
- //para obter o menu de status atual
- const [showMenu, setShowMenu] = useState(false);
 
- //propriedades animadas
- const offsetValue = useRef(new Animated.Value(0)).current;
+  //para obter o menu de status atual
+  const [showMenu, setShowMenu] = useState(false);
 
- //escala inicialmente deve ser um
- const scaleValue = useRef(new Animated.Value(1)).current;
- const closeButtonOffset = useRef(new Animated.Value(0)).current;
+  //propriedades animadas
+  const offsetValue = useRef(new Animated.Value(0)).current;
+
+  //escala inicialmente deve ser um
+  const scaleValue = useRef(new Animated.Value(1)).current;
+  const closeButtonOffset = useRef(new Animated.Value(0)).current;
 
 
   return (
@@ -81,9 +81,10 @@ export default function App() {
         //Vista de sobreposição
       }
 
+      
       <Animated.View style={{
         flexGrow: 1,
-        backgroundColor: "white",
+        backgroundColor: "#800000",
         position: 'absolute',
         top: 0,
         bottom: 0,
@@ -94,8 +95,8 @@ export default function App() {
         borderRadius: showMenu ? 15 : 0,
         //transformando a view
         transform: [
-          {scale : scaleValue },
-          {translateX: offsetValue}
+          { scale: scaleValue },
+          { translateX: offsetValue }
         ]
       }}>
 
@@ -109,48 +110,48 @@ export default function App() {
           }]
         }}>
 
-        <TouchableOpacity onPress={() =>{
-          //faça ação aqui..
-          //vista em escala..
-          Animated.timing(scaleValue, {
-            toValue: showMenu ? 1 : 0.88,
-            duration: 300,
-            useNativeDriver: true
-          })
-           .start()
-       
+          <TouchableOpacity onPress={() => {
+            //faça ação aqui..
+            //vista em escala..
+            Animated.timing(scaleValue, {
+              toValue: showMenu ? 1 : 0.88,
+              duration: 300,
+              useNativeDriver: true
+            })
+              .start()
 
-          Animated.timing(offsetValue, {
-            //valor Handom
-            toValue: showMenu ? 0 : 230,
-            duration: 300,
-            useNativeDriver: true
-          })
+
+            Animated.timing(offsetValue, {
+              //valor Handom
+              toValue: showMenu ? 0 : 230,
+              duration: 300,
+              useNativeDriver: true
+            })
 
               .start()
 
-             Animated.timing(closeButtonOffset, {
-                //valor Handom
-                toValue: !showMenu ? -30 : 0,
-                duration: 300,
-                useNativeDriver: true
-              })
+            Animated.timing(closeButtonOffset, {
+              //valor Handom
+              toValue: !showMenu ? -30 : 0,
+              duration: 300,
+              useNativeDriver: true
+            })
 
               .start()
 
-              setShowMenu(!showMenu);
+            setShowMenu(!showMenu);
 
-              }}>
+          }}>
 
-          <Image source={showMenu ? close : menu } style={{
-            width: 20,
-            height: 20,
-            tintColor: 'black',
-            marginTop: 40,
+            <Image source={showMenu ? close : menu} style={{
+              width: 20,
+              height: 20,
+              tintColor: 'black',
+              marginTop: 40,
 
-          }}></Image>
+            }}></Image>
 
-        </TouchableOpacity>
+          </TouchableOpacity>
 
           <Text style={{
             fontSize: 20,
@@ -158,32 +159,34 @@ export default function App() {
             color: 'black',
             paddingTop: 20
           }}>{currentTab}</Text>
-        
-
-        <Image source={profile1} style={{
-          width: '100%',
-          height: 500,
-          borderRadius: 15,
-          marginTop: 20
-        }}></Image>
-
-        <Text style={{
-          fontSize: 20,
-          fontWeight: 'bold',
-          paddingTop: 15,
-          paddingBottom: 8,
-        }}> Simone Balzan </Text>
-
-        <Text style={{
-        
-          paddingTop: 1,
-          paddingBottom: 8,
-        }}>Atualmente desenvolvendo e estudando React, React Native, JavaScript, 
-        HTML, CSS, TypeScript. Sempre buscando novos desafios 
-        para me tornar uma excelente desenvolvedora! No momento estou disponível para entrar no mercado de trabalho.</Text>
 
 
-      </Animated.View>
+          <Image source={profile1} style={{
+            width: '100%',
+            height: 500,
+            borderRadius: 15,
+            marginTop: 20,
+            
+          }}></Image>
+
+          <Text style={{
+            fontSize: 20,
+            fontWeight: 'bold',
+            paddingTop: 15,
+            paddingBottom: 8,
+          }}> Simone Balzan </Text>
+
+          <Text style={{
+
+            paddingTop: 1,
+            paddingBottom: 8,
+          }}>Atualmente desenvolvendo e estudando React, React Native, JavaScript,
+            HTML, CSS, TypeScript. Sempre buscando novos desafios
+            para me tornar uma excelente desenvolvedora! No momento estou disponível para
+            entrar no mercado de trabalho.</Text>
+
+
+        </Animated.View>
 
       </Animated.View>
     </SafeAreaView>
@@ -216,7 +219,7 @@ const TabButton = (currentTab, setCurrentTab, title, image) => {
         <Image
           source={image} style={{
             width: 30, height: 30,
-            color: currentTab == title ? "#5359D1" : "white"
+            //color: currentTab == title ? "#5359D1" : "white"
           }}></Image>
 
         <Text style={{
@@ -234,7 +237,7 @@ const TabButton = (currentTab, setCurrentTab, title, image) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#5359D1',
+    backgroundColor: '#a52a2a',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
   },
